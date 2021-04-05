@@ -27,6 +27,10 @@ function getRandomInt(min, max) {
 // Поле email заполняется последовательно в формате user${i}@gmail.com. i - счетчик цикла.
 // Поле age заполняется рандомно от 12 до 50 лет. (Только целые числа).
 // Поле isMale заполняется рандомно значениями true или false.
+
+const users = getUsers(15);
+console.log(users, 'task 2 - ®users');
+
 /**
  * 
  * @param {number} amount 
@@ -38,7 +42,11 @@ function getUsers(amount = 1) {
   // console.log(count);
   if (isNaN(count) || count <= 0) return userArray;
   for (let i = 0; i < amount; i++) {
-
+    userArray[i] = {
+      email: `user${i}@gmail.com`,
+      age: getRandomInt(12, 50),
+      isMale: Boolean(getRandomInt(0, 1)),
+    };
   }
-
+  return userArray;
 }
