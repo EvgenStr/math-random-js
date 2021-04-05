@@ -10,16 +10,16 @@ for (let i = 0; i < count; i++) {
 }
 
 console.log(arrayInt, 'task 1');
+
 /**
  * getRandomInt
  * @param {number} min 
  * @param {number} max 
  * @returns {number}
  */
-
 function getRandomInt(min, max) {
-  min = Math.ceil(+min);
-  max = Math.floor(+max);
+  min = Math.ceil(min);
+  max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
