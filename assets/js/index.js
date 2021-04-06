@@ -29,14 +29,14 @@ function getRandomInt(min, max) {
 // Поле age заполняется рандомно от 12 до 50 лет. (Только целые числа).
 // Поле isMale заполняется рандомно значениями true или false.
 
-function User(email, age, isMale, firstName, lastName) {
+function User(email, age, isMale, firstName, lastName, isSubscribe) {
   if (!new.target) return new User(...arguments);
   this.email = email;
   this.age = age;
   this.isMale = isMale;
   this.firstName = firstName;
   this.lastName = lastName;
-  this.isSubscribe = Math.random() < 0.5;
+  this.isSubscribe = isSubscribe;
 }
 User.prototype = new UserProto();
 function UserProto() {
@@ -49,8 +49,9 @@ const minAge = 12;
 const maxAge = 50;
 const maleNames = ["Jacob", "Michael", "Matthew", "Joshua", "Christopher", "Nicholas", "Andrew", "Joseph", "Daniel", "Tyler", "William", "Brandon", "Ryan"];
 const femaleNames = ["Emily", "Hannah", "Madison", "Ashley", "Sarah", "Alexis", "Samantha", "Jessica", "Elizabeth", "Taylor", "Lauren", "Alyssa", "Kayla", "Abigail"];
-const users = getUsers(15);
+let users = getUsers(15);
 console.log(users, 'task 2 - ®users');
+
 
 /**
  * getUsers
@@ -78,7 +79,8 @@ function getRandomUser(i) {
   let isMale = Boolean(getRandomInt(0, 1));
   let name = getName(isMale);
   let lastName = `LastName${i}`
-  return new User(email, age, isMale, name, lastName);
+  let isSubscribe = Math.random() < 0.5;
+  return new User(email, age, isMale, name, lastName, isSubscribe);
 }
 /**
  * getName
@@ -94,3 +96,9 @@ function getName(isMale) {
 };
 
 // console.log(getRandomInt(100,200).toFixed(50));
+
+function getSubscribeAdultWoman(array) {
+  return array.filter(item => (item.age >= 18 && !item.isMale && item.isSubscribe))
+}
+
+console.log(getSubscribeAdultWoman(users));
