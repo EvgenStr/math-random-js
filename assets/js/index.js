@@ -29,12 +29,20 @@ function getRandomInt(min, max) {
 // Поле age заполняется рандомно от 12 до 50 лет. (Только целые числа).
 // Поле isMale заполняется рандомно значениями true или false.
 
-function User(email, age, isMale, name) {
+function User(email, age, isMale, firstName, lastName) {
   if (!new.target) return new User(...arguments);
   this.email = email;
   this.age = age;
   this.isMale = isMale;
-  this.name = name;
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.isSubscribe = Math.random() < 0.5;
+}
+User.prototype = new UserProto();
+function UserProto() {
+  this.getFullName = function getFullName() {
+    return `${this.firstName} ${this.lastName}`
+  }
 }
 
 const minAge = 12;
@@ -69,7 +77,8 @@ function getRandomUser(i) {
   let age = getRandomInt(minAge, maxAge);
   let isMale = Boolean(getRandomInt(0, 1));
   let name = getName(isMale);
-  return new User(email, age, isMale, name);
+  let lastName = `LastName${i}`
+  return new User(email, age, isMale, name, lastName);
 }
 /**
  * getName
