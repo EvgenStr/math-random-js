@@ -102,3 +102,9 @@ function getSubscribeAdultWoman(array) {
 }
 
 console.log(getSubscribeAdultWoman(users));
+
+const arr1 = [1, 4, 12, 123, 1, 9];
+const arr2 = [3, 54, 7, 3, 2, 234, 234, 213];
+const arr3 = [...arr1, ...arr2];
+
+console.log(arr3)
